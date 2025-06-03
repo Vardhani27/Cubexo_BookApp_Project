@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Home</title>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      margin: 0;
+      background-color: #f4f4f4;
+    }
+
+    /* Top Navigation */
+    .topnav {
+      background-color: #f4f4f4;
+      overflow: hidden;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+    }
+
+    .logo img {
+      height: 70px;
+    }
+
+    .nav-buttons a {
+      color: #ad7863;
+      text-align: center;
+      padding: 10px 16px;
+      text-decoration: none;
+      font-size: 17px;
+      border-radius: 5px;
+      margin-left: 10px;
+    }
+
+    .nav-buttons a:hover {
+      background-color: #ddd;
+      color: black;
+    }
+
+    .hero {
+      width: 100%;
+      max-height: 500px;
+      overflow: hidden;
+    }
+
+    .hero img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Page Content */
+    .content {
+      padding: 50px;
+      text-align: center;
+    }
+
+    .content h1 {
+      font-size: 40px;
+      color: #333;
+    }
+
+    .content p {
+      font-size: 18px;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+
+<div class="topnav">
+  <div class="logo">
+    <img src="https://media.istockphoto.com/id/1034157536/vector/vector-design-element-for-book-store.jpg?s=612x612&w=0&k=20&c=NEoyiXWj5JqcgLB2B_A08dJyw5RpsNnmi8sIVlCiqZE=" alt="Logo">
+  </div>
+  <div class="nav-buttons">
+    <a href="{% url 'login' %}">Login</a>
+    <a href="{% url 'register' %}">Sign Up</a>
+  </div>
+</div>
+
+<div class="hero">
+  <img src="https://i.pinimg.com/736x/e7/f5/52/e7f55226e1f9fa93978e677db0b85844.jpg" alt="Hero Image">
+</div>
+
+<div class="content">
+  <h1>Welcome to Book-Store</h1>
+  <p>Your one-stop platform to read and write books.</p>
+</div>
+
+</body>
+</html>
