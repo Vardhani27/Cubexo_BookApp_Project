@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}My Books{% endblock %}
+
+{% block content %}
+  <h2>My Saved Books</h2>
+
+  {% if books %}
+    <style>
+      .book-grid{display:flex;flex-wrap:wrap;gap:20px;margin-top:25px}
+      .book-card{background:#fff;border:1px solid #ddd;border-radius:6px;
+                 width:160px;padding:12px;text-align:center}
+      .book-card img{width:100%;height:220px;object-fit:cover;border-radius:4px}
+      .book-card h3{font-size:16px;margin:10px 0 6px;color:#333}
+      .book-card a{display:inline-block;margin-top:6px;font-size:14px;color:dodgerblue}
+      .book-card a:hover{text-decoration:underline}
+    </style>
+
+    <div class="book-grid">
+      {% for book in books %}
+        <div class="book-card">
+          {% if book.cover %}
+            <img src="{{ book.cover.url }}" alt="{{ book.title }} cover">
+          {% else %}
+            <img src="https://stage.myfandom.store/media/catalog/product/f/c/fc-website-04.jpg" alt="No cover">
+          {% endif %}
+          <h3>{{ book.title }}</h3>
+          <a href="{% url 'book_detail' book.id %}">Details</a>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p>You haven’t saved any books yet. Browse titles and click “Save” to add them here!</p>
+  {% endif %}
+{% endblock %}

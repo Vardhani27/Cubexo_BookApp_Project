@@ -1,0 +1,48 @@
+{% if messages %}
+  <style>
+    .toast-container {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 9999;
+    }
+
+    .toast {
+      background-color: #ffe6e6;
+      border: 1px solid red;
+      color: red;
+      padding: 12px 18px;
+      border-radius: 8px;
+      margin-top: 10px;
+      min-width: 250px;
+      box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+      position: relative;
+      animation: slide-in 0.5s ease-out;
+    }
+
+    .toast .close-btn {
+      position: absolute;
+      top: 5px;
+      right: 10px;
+      background: transparent;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    @keyframes slide-in {
+      from { opacity: 0; transform: translateX(100px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+  </style>
+
+  <div class="toast-container">
+    {% for message in messages %}
+      <div class="toast alert alert-{{ message.tags }}">
+        {{ message }}
+        <button class="close-btn" onclick="this.parentElement.style.display='none';">&times;</button>
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}

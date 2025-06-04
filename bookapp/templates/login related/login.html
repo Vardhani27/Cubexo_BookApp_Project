@@ -91,21 +91,14 @@ a {
     <p>Please enter your login details below.</p>
     <hr>
 
-    {% if messages %}
-      <div style="background-color: #ffe6e6; border: 1px solid red; padding: 10px; border-radius: 5px; margin-bottom: 20px; color: red;">
-        <ul style="margin: 0; padding-left: 20px;">
-          {% for message in messages %}
-            <li>{{ message }}</li>
-          {% endfor %}
-        </ul>
-      </div>
-      {% endif %}
+    {% include 'message.html' %}
 
     <label for="username"><b>Enter username</b></label>
     <input type="text" placeholder="username" name="username" id="username" required>
 
     <label for="psw"><b>Enter password</b></label>
-    <input type="password" placeholder="*********" name="psw" id="psw" required>
+    <input type="password" placeholder="*********" name="password" id="psw" required>
+    <input type="hidden" name="next" value="{{ next }}">
 
     <hr>
 

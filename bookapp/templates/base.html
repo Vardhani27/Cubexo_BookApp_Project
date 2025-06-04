@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}Book App{% endblock %}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      margin: 0;
+      background-color: #f9f9f9;
+    }
+
+    /* Navbar */
+    .navbar {
+      background-color: #302620;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+    }
+
+    .logo img {
+      height: 50px;
+    }
+
+    .navbar .menu a {
+      color: white;
+      padding: 10px 16px;
+      text-decoration: none;
+      font-size: 16px;
+      border-radius: 4px;
+      margin-left: 10px;
+    }
+
+    .navbar .menu a:hover {
+      background-color: #795e4d;
+      color: black;
+    }
+
+    /* Main content block */
+    .main-content {
+      padding: 30px;
+    }
+
+    /* Footer (optional) */
+    .footer {
+      background-color: #302620;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+    .menu {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 20px;
+    padding: 10px 30px;
+    background-color: #302620;
+  }
+
+  .menu a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    font-size: 16px;
+    transition: color 0.3s;
+  }
+
+  .menu a:hover {
+    color: #04AA6D;
+  }
+
+  .menu img {
+    border-radius: 50%;
+    height: 40px;
+  }
+    .hero {
+      width: 100%;
+      max-height: 500px;
+      overflow: hidden;
+    }
+
+    .hero img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Page Content */
+    .content {
+      padding: 50px;
+      text-align: center;
+    }
+
+    .content h1 {
+      font-size: 40px;
+      color: #333;
+    }
+
+    .content p {
+      font-size: 18px;
+      color: #666;
+    }
+
+    .form-container {
+      width: 50%;
+      margin: auto;
+      padding: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+
+    .confirm-delete {
+      width: 40%;
+      margin: auto;
+      padding: 1rem;
+      border: 1px solid #e00;
+      background-color: #ffeaea;
+      border-radius: 8px;
+      text-align: center;
+    }
+  </style>
+
+</head>
+<body>
+
+  <div class="navbar">
+    <div class="logo">
+      <a href="{% url 'explore' %}"><img src="https://media.istockphoto.com/id/1034157536/vector/vector-design-element-for-book-store.jpg?s=612x612&w=0&k=20&c=NEoyiXWj5JqcgLB2B_A08dJyw5RpsNnmi8sIVlCiqZE=" alt="Logo" ></a>
+    </div>
+
+<div class="menu">
+  {% if user.is_authenticated %}
+    {% if role == "reader" %}
+      <a href="{% url 'savedBooks' %}">Saved Books</a>
+    {% elif role == "author" %}
+      <a href="{% url 'myBooks' %}">My Books</a>
+    {% endif %}
+    <a href="{% url 'profile' %}">
+      <img src="https://media.istockphoto.com/id/1300845620/vector/user-icon-flat-isolated-on-white-background-user-symbol-vector-illustration.jpg?s=612x612&w=0&k=20&c=yBeyba0hUkh14_jgv1OKqIH0CCSWU_4ckRkAoy2p73o=" alt="Profile">
+    </a>
+    <a href="{% url 'logout' %}">Logout</a>
+  {% else %}
+    <a href="{% url 'login' %}">Login</a>
+    <a href="{% url 'register' %}">Register</a>
+  {% endif %}
+</div>
+
+  </div>
+
+  <div class="main-content">
+    {% include 'message.html' %}
+    {% if user.is_authenticated %}
+    {% block content %}
+    {% endblock %}
+    {% else %}
+    <div class="hero">
+      <img src="https://i.pinimg.com/736x/e7/f5/52/e7f55226e1f9fa93978e677db0b85844.jpg" alt="Hero Image">
+    </div>
+
+    <div class="content">
+      <h1>Welcome to Book-Store</h1>
+      <p>Your one-stop platform to read and write books.</p>
+    </div>
+    {% endif %}
+    
+  </div>
+
+
+  <div class="footer">
+    <p>&copy; 2025 Book App.</p>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>{{ book.title }}</h1>
+  <p><strong>Category:</strong> {{ book.category }}</p>
+  <p><strong>Pages:</strong> {{ book.pages }}</p>
+  <p>{{ book.description }}</p>
+
+  {% if book.cover %}
+    <img src="{{ book.cover.url }}" alt="Cover" style="max-width:200px;">
+    {% else %}
+    <img src="https://stage.myfandom.store/media/catalog/product/f/c/fc-website-04.jpg" alt="no cover" style="max-width:200px;">
+  {% endif %}
+
+  {% if book.pdf_file %}
+    <p><a href="{{ book.pdf_file.url }}" target="_blank">Read PDF</a></p>
+  {% endif %}
+{% endblock %}
